@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Card, Col, Row} from 'antd';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
   constructor(props){
@@ -22,15 +23,19 @@ class Home extends Component {
 
     return(
       <div>
-      <Row gutter={16}>
-      {pokemon.map( (mon,i) => 
-        <Col span={6} key={i}>
-          <Card title={mon.name} size="small" >
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name}/>
-          </Card>
-        </Col>
-      )}    
-    </Row>
+        <Row gutter={16}>
+        {pokemon.map( (mon,i) => 
+          <Col span={6} key={i}>
+            <Card title={mon.name} size="small" >             
+              <div>
+                <Link to={`/p/${mon.name}`}>
+                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name}/>
+                </Link>
+              </div>                  
+            </Card>
+          </Col>
+        )}    
+        </Row>
       </div>
     )
   }

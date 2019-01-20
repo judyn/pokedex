@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import AboutPage from './pages/about';
 import Home from './pages/home';
+import PokemonPage from './pages/pokemon';
 import './App.css';
 
 class App extends Component {
@@ -21,6 +21,8 @@ class App extends Component {
 
         <Route exact path="/about/" component={AboutPage}/>
         <Route exact path="/pokedex/" component={Home}/>
+        <Route exact path="/p/:pokemon/" component={PokemonPage}></Route>
+
       </div>
       </Router>
       </div>
