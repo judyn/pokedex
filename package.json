@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://judyn.github.io/pokedex/",
   "dependencies": {
+    "antd": "^3.12.3",
     "gh-pages": "^2.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",

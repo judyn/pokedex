@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Card, Col, Row} from 'antd';
 import './App.css';
 
 class App extends Component {
@@ -27,17 +28,15 @@ class App extends Component {
     
     return (
       <div className="App">
-        <header className="App-header">
-          <ul>
-            {pokemon.map( (mon,i) => 
-              <li key={mon.name}>
+        <Row gutter={16}>
+          {pokemon.map( (mon,i) => 
+            <Col span={6}>
+              <Card title={mon.name} size="small" key={i}>
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`}/>
-                <p style={styles}> {mon.name} </p>
-              </li>
-            )}
-          </ul>
-          
-        </header>
+              </Card>
+            </Col>
+          )}    
+        </Row>
       </div>
     );
   }
