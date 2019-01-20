@@ -18,19 +18,15 @@ class Home extends Component {
   }
 
   render(){
-
     const { pokemon } = this.state;
-    const styles = {
-      textTransform: 'capitalize'
-    };
 
     return(
       <div>
       <Row gutter={16}>
       {pokemon.map( (mon,i) => 
-        <Col span={6}>
-          <Card title={mon.name} size="small" key={i}>
-            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`}/>
+        <Col span={6} key={i}>
+          <Card title={mon.name} size="small" >
+            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name}/>
           </Card>
         </Col>
       )}    

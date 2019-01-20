@@ -15,19 +15,15 @@ class App extends Component {
         <ul>
           <li>
             <Link to="/about">About</Link>
-            <Link to="/">Home</Link>
+            <Link to="/pokedex">Home</Link>
           </li>
         </ul>
 
         <Route exact path="/about/" component={AboutPage}/>
-        <Route exact path="/" component={Home}/>
+        <Route exact path="/pokedex/" component={Home}/>
       </div>
       </Router>
-      
-        
       </div>
-
-
     );
   }
 }
