@@ -28,7 +28,7 @@ class Home extends Component {
           <Col span={6} key={i}>
             <Card title={mon.name} size="small" >             
               <div>
-                <Link to={`/p/${mon.name}`}>
+                <Link to={`/p/${mon.name}`} >
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name}/>
                 </Link>
               </div>                  
