@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
 import AboutPage from './pages/about';
 import Home from './pages/home';
 import PokemonPage from './pages/pokemon';
 import './App.css';
 
 const {
-  Header, Content, Footer, Sider,
+  Content, Sider,
 } = Layout;
 
 class App extends Component {
