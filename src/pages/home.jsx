@@ -26,7 +26,7 @@ class Home extends Component {
         <Row gutter={16}>
         {pokemon.map( (mon,i) => 
           <Col span={6} key={i}>
-            <Card title={mon.name} size="small" >             
+            <Card title={mon.name} size="small" style={{marginBottom:8}} >             
               <div>
                 <Link to={`/p/${mon.name}`} >
                 <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name}/>

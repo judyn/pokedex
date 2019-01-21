@@ -50,44 +50,43 @@ class PokemonPage extends Component {
     return(
       <div>
       <Card
-      style={{ width: 300 }}
+      style={{ width:300,marginBottom:10 }}
       actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
       
       >
       <img src={this.state.sprite} alt={this.state.name}/>
+      
       <Meta
         //avatar={<Avatar src={`https://img.pokemondb.net/sprites/sun-moon/icon/gyarados.png`}/>}
         title={this.state.name}
-        description="This is the description"
-      />
+        description="Description goes here"/>
     </Card>
-        
-    <Card>
+    
+    <Card style={{width:500}}>
     <List>
-    <List.Item>
-      <List.Item.Meta title="HP" description={<Progress percent={this.state.hp} format={percent => percent}/>}/>
-    </List.Item>  
-    <List.Item>
-      <List.Item.Meta title="Speed" description={<Progress percent={this.state.speed} format={percent => percent}/>}/>
-    </List.Item>
-    <List.Item>
-      <List.Item.Meta title="Attack" description={<Progress percent={this.state.attack} format={percent => percent}/>}/>
-    </List.Item>
-    <List.Item>
-      <List.Item.Meta title="Defense" description={<Progress percent={this.state.defense} format={percent => percent}/>}/>
-    </List.Item>
-    <List.Item>
-      <List.Item.Meta title="Special Attack" description={<Progress percent={this.state.spatk} format={percent => percent}/>}/>
-    </List.Item>
-    <List.Item>
-      <List.Item.Meta title="Special Defense" description={<Progress percent={this.state.spdef} format={percent => percent}/>}/>
-    </List.Item>
-  </List>
+      <List.Item>
+        <List.Item.Meta title="HP" description={<Progress percent={this.state.hp} format={percent => percent} />}/>
+      </List.Item>  
+      <List.Item>
+        <List.Item.Meta title="Speed" description={<Progress percent={this.state.speed} format={percent => percent}/>}/>
+      </List.Item>
+      <List.Item>
+        <List.Item.Meta title="Attack" description={<Progress percent={this.state.attack} format={percent => percent}/>}/>
+      </List.Item>
+      <List.Item>
+        <List.Item.Meta title="Defense" description={<Progress percent={this.state.defense} format={percent => percent}/>}/>
+      </List.Item>
+      <List.Item>
+        <List.Item.Meta title="Special Attack" description={<Progress percent={this.state.spatk} format={percent => percent}/>}/>
+      </List.Item>
+      <List.Item>
+        <List.Item.Meta title="Special Defense" description={<Progress percent={this.state.spdef} format={percent => percent}/>}/>
+      </List.Item>
+    </List>
     </Card>
         
-
-        <div>Weight: {(this.state.weight /4.536).toFixed(2)} lbs</div>
-        <div>Height: {(this.state.height/3.048).toFixed(2)} ft</div>
+      <div>Weight: {(this.state.weight /4.536).toFixed(2)} lbs</div>
+      <div>Height: {(this.state.height/3.048).toFixed(2)} ft</div>
         
         
       </div>
