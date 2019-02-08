@@ -1,17 +1,8 @@
-export const FETCH_POKEMON = 'FETCH_POKEMON'
+export const ADD_POKEMON = 'ADD_POKEMON'
 
-export function selectPokemon(pokemon) {
+export default function addPokemon(name){
   return {
-    type: SELECT_POKEMON,
-    pokemon
+    type: ADD_POKEMON, 
+    name
   }
-}
-
-function fetchPokemon(pokemon) {
-  return dispatch => {
-    dispatch(requestPosts(pokemon))
-    return fetch('')
-      .then(response => response.json())
-      .then(json => dispatch(receivePosts(pokemon, json)))
-  }
-}
+};

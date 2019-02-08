@@ -28,6 +28,83 @@
   text-transform:capitalize;
 }
 
+.List{
+  text-transform: capitalize;
+}
+
+/*Pokemon Types*/
+.normal{
+  background:#B7B7A9;
+}
+
+.poison{
+  background: #A15796;
+}
+
+.psychic{
+  background: #FA64B8;
+}
+
+.fire{
+  background:#FA5541;
+}
+
+.grass{
+  background:#8BD54E;
+}
+
+.water{
+  background:#55AFFF;
+}
+
+.ground{
+  background: #EFCE55;
+}
+
+.ice{
+  background:#97F1FF;
+}
+
+.rock{
+  background:#CFBE73;
+}
+
+.dragon{
+  background:#8B77FF;
+}
+
+.bug{
+  background: #C4D319;
+}
+
+.dark{
+  background:#8E6955;
+}
+
+.fighting{
+  background:#AA5743;
+}
+
+.ghost{
+  background:#7A76D7;
+}
+
+.steel{
+  background:#C5C3DA;
+}
+
+.flying{
+  background:#7AA2FF;
+}
+
+.electric{
+  background:#FDE337;
+}
+
+.fairy{
+  background:#F6ACFF;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

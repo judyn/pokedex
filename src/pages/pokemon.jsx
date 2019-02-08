@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, Icon, Progress, List} from 'antd';
+import {Card, Progress, List, Tag} from 'antd';
 
 const { Meta } = Card;
 
@@ -12,18 +12,19 @@ class PokemonPage extends Component {
       weight:null,
       height:null,
       sprite:'',
-      speed:'',
-      spdef: '',
-      spatk: '',
-      defense: '',
-      attack: '',
-      hp: ''
+      team: [],
+      stats:[],
+      loading:true,
+      id:null,
+      types:[],
+      moves:[]
     }
   }
 
   componentDidMount(){
+
     const pokeName = `https://pokeapi.co/api/v2/pokemon/${this.props.match.params.pokemon}`;
-   
+    
     fetch(pokeName,{
       method:'GET',
     })
@@ -34,55 +35,49 @@ class PokemonPage extends Component {
       height:json.height, 
       weight:json.weight, 
       sprite:json.sprites.front_default,
-      speed: json.stats[0].base_stat,
-      spdef: json.stats[1].base_stat,
-      spatk: json.stats[2].base_stat,
-      defense: json.stats[3].base_stat,
-      attack: json.stats[4].base_stat,
-      hp: json.stats[5].base_stat
+      stats: json.stats,
+      loading:false,
+      id: json.id,
+      types:json.types,
+      moves: json.moves
     }))
+    
   }
 
   render(){
 
-    console.log(this.state.pokeStats);
+    const { types, stats, loading } = this.state;
+    console.log(this.state.pokeStats)
     
     return(
       <div>
       <Card
-      style={{ width:300,marginBottom:10 }}
-      actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
-      
+      style={{ width:300,marginBottom:10 }}  loading={loading}
       >
       <img src={this.state.sprite} alt={this.state.name}/>
       
       <Meta
-        //avatar={<Avatar src={`https://img.pokemondb.net/sprites/sun-moon/icon/gyarados.png`}/>}
         title={this.state.name}
-        description="Description goes here"/>
+        description={this.state.entry}/>
+        {
+          types.map((type,i) => {
+            return(
+              <Tag className={type.type.name} color key={i}>{type.type.name}</Tag>
+            )
+          })
+        }
     </Card>
     
-    <Card style={{width:500}}>
+    <Card style={{width:500}} loading={loading}>
     <List>
-      <List.Item>
-        <List.Item.Meta title="HP" description={<Progress percent={this.state.hp} format={percent => percent} />}/>
-      </List.Item>  
-      <List.Item>
-        <List.Item.Meta title="Speed" description={<Progress percent={this.state.speed} format={percent => percent}/>}/>
-      </List.Item>
-      <List.Item>
-        <List.Item.Meta title="Attack" description={<Progress percent={this.state.attack} format={percent => percent}/>}/>
-      </List.Item>
-      <List.Item>
-        <List.Item.Meta title="Defense" description={<Progress percent={this.state.defense} format={percent => percent}/>}/>
-      </List.Item>
-      <List.Item>
-        <List.Item.Meta title="Special Attack" description={<Progress percent={this.state.spatk} format={percent => percent}/>}/>
-      </List.Item>
-      <List.Item>
-        <List.Item.Meta title="Special Defense" description={<Progress percent={this.state.spdef} format={percent => percent}/>}/>
-      </List.Item>
-    </List>
+      {
+        stats.map((stat,i) => {
+          return(
+            <List.Item.Meta title={stat.stat.name} description={<Progress percent={stat.base_stat} format={percent => percent}/>} key={i}/>
+          )
+        })
+      }
+    </List> 
     </Card>
         
       <div>Weight: {(this.state.weight /4.536).toFixed(2)} lbs</div>

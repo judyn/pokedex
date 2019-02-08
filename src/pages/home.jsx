@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {Card, Col, Row} from 'antd';
+import {Card, Icon, List} from 'antd';
 import { Link } from 'react-router-dom';
 
 class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      pokemon: []
+      pokemon: [],
+      loading:true
     }
   }
 
@@ -15,27 +16,27 @@ class Home extends Component {
       method:'GET',
     })
     .then( response => response.json())
-    .then( json => this.setState({ pokemon: json.results }))
+    .then( json => this.setState({ pokemon: json.results, loading:false }))
   }
 
   render(){
-    const { pokemon } = this.state;
+    const { pokemon, loading } = this.state;
 
     return(
       <div>
-        <Row gutter={16}>
-        {pokemon.map( (mon,i) => 
-          <Col span={6} key={i}>
-            <Card title={mon.name} size="small" style={{marginBottom:10,textAlign:'center'}} >             
-              <div>
-                <Link to={`/p/${mon.name}`} >
-                <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name}/>
+        <List loading={loading} grid={{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 4,}}
+          dataSource={pokemon}
+          renderItem = { (mon,i) => (
+            <List.Item >
+              <Card title={mon.name} size="small" extra={<Icon type="plus-circle" theme="filled" />} style={{marginBottom:10,textAlign:'center'}} key={i} >             
+                <Link to={`/p/${mon.name}`}  >
+                  <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name} />
                 </Link>
-              </div>                  
-            </Card>
-          </Col>
-        )}    
-        </Row>
+              </Card>
+            </List.Item>
+          )}
+        >
+        </List>    
       </div>
     )
   }

@@ -1,9 +1,10 @@
-import React,{Component} from 'react'
+import React from 'react';
 
-class Box extends Component{
-  render(){
-    return(
-      <div></div>
-    );
-  }
-}
+const Box = (props) => 
+<div>
+
+{props.message}
+
+</div>
+
+export default Box
