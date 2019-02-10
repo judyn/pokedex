@@ -28,7 +28,7 @@ class Home extends Component {
           dataSource={pokemon}
           renderItem = { (mon,i) => (
             <List.Item >
-              <Card title={mon.name} size="small" extra={<Icon type="plus-circle" theme="filled" />} style={{marginBottom:10,textAlign:'center'}} key={i} >             
+              <Card title={mon.name} size="small" hoverable extra={<Icon type="plus-circle" theme="filled" />} style={{marginBottom:10,textAlign:'center'}} key={i} >             
                 <Link to={`/p/${mon.name}`}  >
                   <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name} />
                 </Link>

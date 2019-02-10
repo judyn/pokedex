@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Box from '../components/Box';
 
 class AboutPage extends Component {
   render(){
@@ -12,12 +11,7 @@ class AboutPage extends Component {
       ,
       <a href="https://ant.design/" target="_blank" rel="noopener noreferrer"> Ant Design </a>
       and
-      <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer"> PokeApi</a>
-
-      <div>
-      <Box message="HERE BE MESSAGE"></Box>
-      </div>
-
+      <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer"> PokeApi</a>.
       </div>
     )
   }
