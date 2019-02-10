@@ -25,6 +25,7 @@ class App extends Component {
       collapsed: !this.state.collapsed,
     });
   }
+  
   render() {
   
     return (

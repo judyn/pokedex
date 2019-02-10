@@ -7,8 +7,10 @@ class Home extends Component {
     super(props)
     this.state = {
       pokemon: [],
-      loading:true
+      loading:true,
+      team:[]
     }
+
   }
 
   componentDidMount(){
@@ -20,23 +22,36 @@ class Home extends Component {
   }
 
   render(){
-    const { pokemon, loading } = this.state;
-
+    const { pokemon, loading, team } = this.state;
+    
     return(
       <div>
-        <List loading={loading} grid={{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 4,}}
-          dataSource={pokemon}
-          renderItem = { (mon,i) => (
-            <List.Item >
-              <Card title={mon.name} size="small" hoverable extra={<Icon type="plus-circle" theme="filled" />} style={{marginBottom:10,textAlign:'center'}} key={i} >             
-                <Link to={`/p/${mon.name}`}  >
-                  <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name} />
-                </Link>
-              </Card>
-            </List.Item>
-          )}
+        <List>
+          {
+            team.map((team,i) => {
+              return(
+                <div>{team}</div>
+              )
+            })
+          }
+          
+        </List>
+        <List loading={loading} 
+              grid={{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 4,}}
+              dataSource={pokemon}
+              renderItem = { (mon,i) => (
+                <List.Item >
+                  <Card title={mon.name} size="small" hoverable extra={<Icon type="plus-circle" theme="filled" />} style={{marginBottom:10,textAlign:'center'}} key={i} >             
+                    <Link to={`/p/${mon.name}`}  >
+                      <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`} alt={mon.name} />
+                    </Link>
+                  </Card>
+                </List.Item>
+              )}
         >
-        </List>    
+        </List>
+        
+        
       </div>
     )
   }

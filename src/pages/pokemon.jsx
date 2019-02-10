@@ -106,7 +106,7 @@ class PokemonPage extends Component {
             {
               stats.map((stat,i) => {
                 return(
-                  <List.Item>
+                  <List.Item key={i}>
                     <List.Item.Meta title={stat.stat.name} description={<Progress percent={stat.base_stat} size="small" format={percent => percent}/>} key={i}/>
                   </List.Item>
                   
