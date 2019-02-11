@@ -2,9 +2,7 @@ import React from 'react';
 
 const Box = (props) => 
 <div>
-
-{props.message}
-
+  {props.message}
 </div>
 
 export default Box
