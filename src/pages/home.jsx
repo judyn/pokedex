@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import {Card, Icon, List, Tabs, message} from 'antd';
+import {Card, Icon, List, Tabs, message, Input, Row, Col} from 'antd';
 import { Link } from 'react-router-dom';
 
 const TabPane = Tabs.TabPane;
+const Search = Input.Search;
 
 class Home extends Component {
   constructor(props){
@@ -44,6 +45,10 @@ class Home extends Component {
     message.error(`Removed ${name} from team`);
   }
 
+  searchPokemon(name){
+    window.location.assign(`/p/${name}`)
+  }
+
   render(){
     const { pokemon, loading, team } = this.state;
     
@@ -51,6 +56,17 @@ class Home extends Component {
       <div>
       <Tabs type="card">
         <TabPane tab="List" key="1">
+            <Row>
+              <Col span={8}>
+                <Search
+                placeholder="Search Pokemon"
+                onSearch={value => this.searchPokemon(value)}
+                enterButton
+                style={{marginBottom:20}}
+                />
+              </Col>
+            </Row>
+            
             <List loading={loading} 
               grid={{ gutter: 16, xs: 1, sm: 2, md: 4, lg: 4, xl: 6, xxl: 4,}}
               dataSource={pokemon}
@@ -83,6 +99,7 @@ class Home extends Component {
           >  
         </List>
         </TabPane>
+        
         </Tabs>      
       </div>
     )
