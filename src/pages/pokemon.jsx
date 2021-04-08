@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Card, Progress, List, Tag, Row, Col, Button, Icon} from 'antd';
+import {Card, Progress, List, Tag, Row, Col, Button, Icon, Table} from 'antd';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 const { Meta } = Card;
 
@@ -38,23 +39,66 @@ class PokemonPage extends Component {
       xp: json.base_experience, 
       sprite:json.sprites.front_default,
       stats: json.stats,
-      loading:false,
       id: json.id,
       types:json.types,
       moves: json.moves,
+      species: json.species,
+      abilities: json.abilities
       
     }))
+    .then( () => {
+
+      let speciesUrl = this.state.species.url;
+      fetch( speciesUrl,{
+        method:'GET'
+      })
+      .then( response => response.json())
+      .then( json => this.setState({
+        flavor_text: json.flavor_text_entries[0].flavor_text,
+        loading:false
+      }))
+
+    })
     
+    
+
   }
 
+ 
   goBack(){
     window.history.back();
   }
 
+
   render(){
 
-    const { types, stats, loading, moves, pokeStats } = this.state;
+    const { types, stats, loading, moves, abilities, pokeStats } = this.state;
     console.log(this.state.pokeStats)
+    console.log(this.state.flavor_text)
+    console.log(abilities)
+
+    const movesArray = moves.map(obj => {
+      let rObj = {}
+      rObj.move = obj.move.name;
+      
+      return rObj
+    })
+
+    const columns = [
+      {
+        title: 'Moves',
+        width: 100,
+        dataIndex: 'move',
+        key: 'move',
+
+      },
+      {
+        title: 'Abilities',
+        width: 100,
+        dataIndex: 'ability',
+        key: 'ability',
+        
+      }]
     
     return(
       <div style={{textTransform:'capitalize'}}>
@@ -71,7 +115,7 @@ class PokemonPage extends Component {
               >
               <img src={this.state.sprite} alt={this.state.name}/>
       
-              <Meta title={this.state.name + ' #' + this.state.id }/>
+              <Meta title={this.state.name + ' #' + this.state.id } description={this.state.flavor_text}/>
                 <div style={{marginTop:10}}>
                 {
                   types.map((type,i) => {
@@ -103,32 +147,23 @@ class PokemonPage extends Component {
             <List.Item>
               <List.Item.Meta title="Base XP" description={<Progress percent={pokeStats.base_experience} size="small" format={percent => percent}/>} /> 
             </List.Item>
-            {
-              stats.map((stat,i) => {
-                return(
-                  <List.Item key={i}>
-                    <List.Item.Meta title={stat.stat.name} description={<Progress percent={stat.base_stat} size="small" format={percent => percent}/>} key={i}/>
-                  </List.Item>
-                  
-                )
-              })
-            }
+              {
+                stats.map((stat,i) => {
+                  return(
+                    <List.Item key={i}>
+                      <List.Item.Meta title={stat.stat.name} description={<Progress percent={stat.base_stat} size="small" format={percent => percent}/>} key={i}/>
+                    </List.Item>
+                    
+                  )
+                })
+              }
             </List> 
           </Card>
         </Col>
 
         <Col xs={24} xl={12}>
-          <Card loading={loading} size="small" title="Moves">
-            <List>
-              {
-                moves.map((move,i) => {
-                  return(
-                    <List.Item key={i}>{move.move.name}</List.Item>
-                  )
-                })
-              }
-            </List> 
-          </Card>      
+           
+          <Table loading={loading} columns={columns} dataSource={movesArray} pagination={{ pageSize: 50 }} scroll={{ y: 600 }} />
         </Col>
         </Row>  
       </div>

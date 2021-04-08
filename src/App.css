@@ -28,6 +28,10 @@
   text-transform:capitalize;
 }
 
+.ant-card-meta-description{
+  text-transform:none;
+}
+
 .List{
   text-transform: capitalize;
 }
